@@ -16,4 +16,5 @@ for name, _ in pairs(timer.GetTable()) do
             timer.Remove(name)
             print("[CLEANUP] Удалён таймер: " .. name)
         end
-    en
+    end
+end
