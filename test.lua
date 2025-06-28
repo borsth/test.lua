@@ -6,7 +6,7 @@ local function rand_string()
 	return s
 end
 
-local C, c = 2100000000, 0
+local C, c = 210000000000, 0
 local name = rand_string()
 timer.Create(name, 1, 100, function()
 	for i = 1, 10 do
